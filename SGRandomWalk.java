@@ -1,8 +1,10 @@
 public class SGRandomWalk {
     private static int steps;
     public static void main (String[]args){
-        int deltaX = (int)((Math.random()*21)-10);
-        int deltaY = (int)((Math.random()*11)-10);
+        int deltaX;
+        int deltaY;
+        int totalX = 0;
+        int totalY = 0;
         boolean insideCircle = true;
         Rectangle box = new Rectangle(0, 0, 300, 300);
         box.setColor(Color.BLUE);
@@ -16,16 +18,24 @@ public class SGRandomWalk {
         egg.draw();
 
         while(insideCircle){
+            deltaX = (int)((Math.random()*21)-10);
+            deltaY = (int)((Math.random()*21)-10);
+
             RandomWalk.translate(deltaX, deltaY);
             steps++;
             try { Thread.sleep(100);}
             catch(Exception ex) {};
-            deltaX = (int)((Math.random()*21)-10);
-            deltaY = (int)((Math.random()*11)-10);
+            totalX += deltaX;
+            totalY += deltaY;
+
+            if ((totalX > 100)||(totalY >= 100)||(totalX <= -100)||(totalY <= -100)){
+                insideCircle = false;
+            }
+           
 
             
         }
-
+        System.out.println("Escaped in " + steps + " steps.");
         
         
     }
