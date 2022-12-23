@@ -3,34 +3,29 @@ public class SGRandomWalk {
     public static void main (String[]args){
         int deltaX;
         int deltaY;
-        int totalX = 0;
-        int totalY = 0;
-        boolean insideCircle = true;
         Rectangle box = new Rectangle(0, 0, 300, 300);
         box.setColor(Color.BLUE);
         box.fill();  
-        Ellipse RandomWalk = new Ellipse(150, 150, 10, 10);
+        Ellipse RandomWalk = new Ellipse(120, 120, 10, 10);
         RandomWalk.setColor(Color.YELLOW);
         RandomWalk.fill();
-        Ellipse egg = new Ellipse(50, 50, 200, 200);
+        Ellipse egg = new Ellipse(25, 25, 200, 200);
         egg.setColor(Color.RED);
         egg.fill();  
         egg.draw();
+        int x1 = RandomWalk.getX();
+        int y1 = RandomWalk.getY();
 
-        while(insideCircle){
+        while(RandomWalk.getX() < x1+100 && RandomWalk.getY() <y1+100){
             deltaX = (int)((Math.random()*21)-10);
             deltaY = (int)((Math.random()*21)-10);
-
             RandomWalk.translate(deltaX, deltaY);
             steps++;
             try { Thread.sleep(100);}
             catch(Exception ex) {};
-            totalX += deltaX;
-            totalY += deltaY;
+            
 
-            if ((totalX > 100)||(totalY >= 100)||(totalX <= -100)||(totalY <= -100)){
-                insideCircle = false;
-            }
+            
            
 
             
