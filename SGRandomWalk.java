@@ -15,24 +15,26 @@ public class SGRandomWalk {
         egg.draw();
         int x1 = RandomWalk.getX();
         int y1 = RandomWalk.getY();
-
-        while(RandomWalk.getX() < x1+100 && RandomWalk.getY() <y1+100){
-            deltaX = (int)((Math.random()*21)-10);
-            deltaY = (int)((Math.random()*21)-10);
+        boolean insideCircle = true
+            while (insideCircle) {
+            deltaX = (int) (21 * Math.random()) - 10;
+            deltaY = (int) (21 * Math.random()) - 10;
+            
             RandomWalk.translate(deltaX, deltaY);
             steps++;
             try { Thread.sleep(100);}
             catch(Exception ex) {};
-            
 
-            
-           
+            totalX += deltaX;
+            totalY += deltaY;
 
-            
+            if ((Math.pow(totalX, 2) + Math.pow(totalY, 2)) > (Math.pow(110, 2))) insideCircle = false;
+
+            System.out.println(totalX + " " + totalY);
         }
+
         System.out.println("Escaped in " + steps + " steps.");
-        
-        
+
     }
     
 }
