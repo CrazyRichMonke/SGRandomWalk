@@ -15,6 +15,8 @@ public class SGRandomWalk {
         egg.draw();
         int x1 = RandomWalk.getX();
         int y1 = RandomWalk.getY();
+        int totalX = 0;
+        int totalY = 0;
         boolean insideCircle = true
             while (insideCircle) {
             deltaX = (int) (21 * Math.random()) - 10;
@@ -28,7 +30,9 @@ public class SGRandomWalk {
             totalX += deltaX;
             totalY += deltaY;
 
-            if ((Math.pow(totalX, 2) + Math.pow(totalY, 2)) > (Math.pow(110, 2))) insideCircle = false;
+            if ((Math.pow(totalX, 2) + Math.pow(totalY, 2)) > (Math.pow(110, 2))){
+                insideCircle = false;
+            
 
             System.out.println(totalX + " " + totalY);
         }
